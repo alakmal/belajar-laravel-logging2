@@ -19,16 +19,14 @@ class LoggingTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testLog()
+    public function testContext()
     {
 
-        Log::info("Hello Info");
-        Log::debug("Hello Debug");
-        Log::error("Hello Error");
-        Log::warning("Hello Warning");
-        Log::critical("Hello Critical");
-        Log::alert("Hello Alert");
-        Log::emergency("Hello Emergency");
+        Log::withContext([
+            "user" => "John Doe",
+            "action" => "testContext",
+        ]);
+        Log::info("Hello Context");
 
         $this->assertTrue(true); // Just to ensure the test passes
     }
