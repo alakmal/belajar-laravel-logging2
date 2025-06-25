@@ -19,17 +19,12 @@ class LoggingTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testLog()
+    public function testWithChannel()
     {
+        $slackLogger = Log::channel('slack');
 
-        Log::info("Hello Info");
-        Log::debug("Hello Debug");
-        Log::error("Hello Error");
-        Log::warning("Hello Warning");
-        Log::critical("Hello Critical");
-        Log::alert("Hello Alert");
-        Log::emergency("Hello Emergency");
-
+        // Log a message to the Slack channel
+        $slackLogger->info('This is a test message for Slack logging.');
         $this->assertTrue(true); // Just to ensure the test passes
     }
 }
